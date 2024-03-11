@@ -20,7 +20,8 @@ trait Discountable {
 
     // Calcola il prezzo del prodotto dopo l'applicazione dello sconto
     public function applyDiscount() {
-        return $this->price - ($this->price * $this->discount / 100);
+        // Calcola il prezzo scontato e formatta il risultato con due cifre decimali
+        return number_format($this->price - ($this->price * $this->discount / 100), 2, '.', '');
     }
 }
 
