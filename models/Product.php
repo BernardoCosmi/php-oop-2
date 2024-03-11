@@ -1,12 +1,12 @@
 <?php
 
-include_once 'Item.php'; // Assicurati che sia incluso il percorso corretto
+include_once 'Item.php';
 include_once 'Category.php';
 include_once 'ProductType.php';
 
 // Definisco la classe Product estendendo Item.
 class Product extends Item {
-    
+
     // Proprietà aggiuntive specifiche del prodotto.
     private $category;
     private $type;

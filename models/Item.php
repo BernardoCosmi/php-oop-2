@@ -2,6 +2,7 @@
 
 // Classe base generica per vari tipi di articoli.
 class Item {
+    
     // Proprietà protette, comuni a tutti gli oggetti che estendono questa classe.
     protected $name;
     protected $price;
