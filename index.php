@@ -16,6 +16,13 @@ $products = [
     new Product('Spazzola ', 7.99, new Category('Gatti'), new ProductType('Cura'), 'spazzola_gatti.jpg'),
     new Product('Shampoo per cani', 11.99, new Category('Cani'), new ProductType('Cura'), 'shampoo_cani.jpg')
 ];
+
+// Applico uno sconto del 10% a tutti i prodotti della categoria 'Gatti' (Gatti>>>Cani)
+foreach ($products as $product) {
+    if ($product->getCategory()->getName() == 'Gatti') {
+        $product->setDiscount(10);
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +45,12 @@ $products = [
             <img src='./assets/<?= $product->getImage() ?>' alt='<?= $product->getName() ?>' class='card-img-top'>
             <div class='card-body'>
                 <h5 class='card-title product-name'><?= $product->getName() ?></h5>
-                <p class='card-text product-price'>€<?= $product->getPrice() ?></p>
+                <p class='card-text product-price'>
+                    €<?= $product->applyDiscount() ?>
+                    <?php if ($product->getDiscount() > 0): ?>
+                        <small><del>€<?= $product->getPrice() ?></del></small>
+                    <?php endif; ?>
+                </p>
                 <p class='card-text product-category'>Categoria: <?= $product->getCategory()->getName() ?></p>
                 <p class='card-text product-type'>Tipo: <?= $product->getType()->getType() ?></p>
             </div>
