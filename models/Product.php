@@ -3,6 +3,7 @@
 include_once 'Item.php';
 include_once 'Category.php';
 include_once 'ProductType.php';
+include_once 'OutOfStock.php';
 
 // Aggiunta del trait 'Discountable' per consentire la gestione degli sconti sui prodotti
 trait Discountable {
@@ -34,14 +35,23 @@ class Product extends Item {
     private $type;
     private $image;
 
-    // Modifica del costruttore per utilizzare anche le proprietà della classe base.
-    public function __construct($name, $price, Category $category, ProductType $type, $image) {
+    // Modifica del costruttore per includere lo stock.
+    public function __construct($name, $price, Category $category, ProductType $type, $image, $stock = 0) {
         
-        // Chiama il costruttore della classe base
-        parent::__construct($name, $price); 
+        parent::__construct($name, $price);
         $this->category = $category;
         $this->type = $type;
         $this->image = $image;
+        $this->stock = $stock; // Inizializza lo stock
+    }
+
+
+    // Metodo per "acquistare" il prodotto
+    public function buy($quantity = 1) {
+        if ($this->stock < $quantity) {
+            throw new OutOfStockException("Siamo spiacenti, il prodotto ". '"'. $this->getName().'"' . " risulta esaurito");
+        }
+        $this->stock -= $quantity; // Riduci lo stock
     }
 
     // Restituisce la categoria del prodotto
