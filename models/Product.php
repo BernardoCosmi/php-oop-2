@@ -1,48 +1,36 @@
 <?php
 
+include_once 'Item.php'; // Assicurati che sia incluso il percorso corretto
 include_once 'Category.php';
 include_once 'ProductType.php';
 
-// Definisco la classe Product.
-class Product {
+// Definisco la classe Product estendendo Item.
+class Product extends Item {
     
-    // Proprietà private del prodotto.
-    private $name;    
-    private $price;   
-    private $category; 
-    private $type;     
-    private $image;    
+    // Proprietà aggiuntive specifiche del prodotto.
+    private $category;
+    private $type;
+    private $image;
 
-    // Inizializzo il prodotto con i dettagli specificati.
+    // Modifica del costruttore per utilizzare anche le proprietà della classe base.
     public function __construct($name, $price, Category $category, ProductType $type, $image) {
-        $this->name = $name;         
-        $this->price = $price;       
-        $this->category = $category; 
-        $this->type = $type;         
-        $this->image = $image;       
+        
+        // Chiama il costruttore della classe base
+        parent::__construct($name, $price); 
+        $this->category = $category;
+        $this->type = $type;
+        $this->image = $image;
     }
 
-    // Fornisco il nome del prodotto.
-    public function getName() {
-        return $this->name;
-    }
-
-    // Fornisco il prezzo del prodotto.
-    public function getPrice() {
-        return $this->price;
-    }
-
-    // Fornisco la categoria del prodotto.
+    // Metodi specifici del prodotto.
     public function getCategory() {
         return $this->category;
     }
 
-    // Fornisco il tipo del prodotto.
     public function getType() {
         return $this->type;
     }
 
-    // Fornisco l'immagine del prodotto.
     public function getImage() {
         return $this->image;
     }

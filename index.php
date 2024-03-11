@@ -28,10 +28,14 @@ $products = [
 </head>
 <body>
 
-<div class="products-container d-flex flex-wrap">
+<h1 class="text-uppercase text-center mt-5 m-3 fw-bold">
+    pet shop
+</h1>
+
+<div class="products-container d-flex flex-wrap m-auto gap-2 justify-content-center" style="width: 85%;">
     <?php foreach ($products as $product): ?>
-        <div class='product-card card m-2' style="width: 18rem;">
-            <img src='<?= $product->getImage() ?>' alt='<?= $product->getName() ?>' class='card-img-top'>
+        <div class='product-card card m-3 col-2' >
+            <img src='./assets/<?= $product->getImage() ?>' alt='<?= $product->getName() ?>' class='card-img-top'>
             <div class='card-body'>
                 <h5 class='card-title product-name'><?= $product->getName() ?></h5>
                 <p class='card-text product-price'>€<?= $product->getPrice() ?></p>
