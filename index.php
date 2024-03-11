@@ -26,16 +26,17 @@ foreach ($products as $product) {
 }
 
 // Tentativo di acquistare un prodotto
-$purchaseMessage = ''; // Inizializza il messaggio di acquisto come una stringa vuota
+$purchaseMessage = ''; // Inizializzo il messaggio di acquisto come una stringa vuota
 if (isset($_GET['buy'])) {
     $productIndex = $_GET['buy'];
     try {
         $products[$productIndex]->buy(1);
         $purchaseMessage = 'Acquisto riuscito! L\'ordine sarà spedito entro 2 giorni lavorativi.';
     } catch (OutOfStockException $e) {
-        $purchaseMessage = '' . $e->getMessage(); // Mostra messaggio di errore se il prodotto è esaurito
+        $purchaseMessage = '' . $e->getMessage(); // Mostro messaggio di errore se il prodotto è esaurito
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +52,9 @@ if (isset($_GET['buy'])) {
 <h1 class="text-uppercase text-center mt-5 m-3 fw-bold">
     pet shop
 </h1>
+
+<!-- Pulsante di ricarica -->
+<a href="/php-oop-2/" class="btn btn-primary d-block mx-auto" style="width: 200px;">Ricarica la pagina</a>
 
 <div class="products-container d-flex flex-wrap m-auto gap-2 justify-content-center" style="width: 85%;">
     <?php foreach ($products as $index => $product): ?>
@@ -72,7 +76,7 @@ if (isset($_GET['buy'])) {
 </div>
     
 <script>
-    // Verifica se esiste un messaggio di acquisto e mostra un prompt
+    // Verifico se esiste un messaggio di acquisto e mostro l'alert
     <?php if (!empty($purchaseMessage) && isset($_GET['buy'])): ?>
     alert('<?= addslashes($purchaseMessage) ?>');
     <?php endif; ?>

@@ -51,7 +51,7 @@ class Product extends Item {
         if ($this->stock < $quantity) {
             throw new OutOfStockException("Siamo spiacenti, il prodotto ". '"'. $this->getName().'"' . " risulta esaurito");
         }
-        $this->stock -= $quantity; // Riduci lo stock
+        $this->stock -= $quantity; // Riduco lo stock
     }
 
     // Restituisce la categoria del prodotto
