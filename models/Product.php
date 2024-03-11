@@ -1,7 +1,11 @@
 <?php
 
+include_once 'Category.php';
+include_once 'ProductType.php';
+
 // Definisco la classe Product.
 class Product {
+    
     // Proprietà private del prodotto.
     private $name;    
     private $price;   
